@@ -27,7 +27,7 @@ namespace ASP103.Controllers
         {
             Product product = new Product();
 
-            product.Name = "Apple";
+            product.Name = "Working...";
             product.ExpiryDate = new DateTime(2008, 12, 28);
             product.Price = 3.99F;
 
