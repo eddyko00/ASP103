@@ -130,7 +130,8 @@ namespace ASP103.Controllers
             }
             else
             {
-                return null;
+                JsonString.Append("[]");
+                return JsonString.ToString(); 
             }
         }
 
@@ -171,7 +172,8 @@ namespace ASP103.Controllers
             }
             else
             {
-                return null;
+                JsonString.Append("[]");
+                return JsonString.ToString();
             }
         }
 
