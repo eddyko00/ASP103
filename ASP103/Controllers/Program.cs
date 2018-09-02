@@ -51,7 +51,7 @@ namespace ASP103.Controllers
         }
 
 
-        public static String SelectSQLCmd(String sql)
+        public static String SelectSQLCmd(String sql, int json)
         {
             Console.WriteLine("Getting Connection ...");
             SqlConnection sqlConnection = DBUtils.GetDBConnection();
@@ -70,7 +70,11 @@ namespace ASP103.Controllers
                 DataTable ds = new DataTable();
                 sqlDataAdapter.Fill(ds);
 
-                jsonString = DataTableToJsonObjAFweb(ds);
+                if (json == 0) { 
+                    jsonString = DataTableToJsonObjAFweb(ds);
+                } else {
+                    jsonString = DataTableToJsonObj(ds);
+                }
                 Console.WriteLine(jsonString);
 
                 sqlDataAdapter.Dispose();

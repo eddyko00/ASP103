@@ -48,7 +48,14 @@ namespace ASP103.Controllers
             {
                 if (sqlcmd != null)
                 {
-                    return Program.SelectSQLCmd(sqlcmd);
+                    return Program.SelectSQLCmd(sqlcmd, 0); // no json
+                }
+            }
+            else if (id == 1) // SELECTT
+            {
+                if (sqlcmd != null)
+                {
+                    return Program.SelectSQLCmd(sqlcmd, 1); // with json
                 }
             }
             else if (id == 22) // INSERT
