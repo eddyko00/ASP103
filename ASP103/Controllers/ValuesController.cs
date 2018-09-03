@@ -84,8 +84,13 @@ namespace ASP103.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        //public void Post([FromBody] string value)
+        public void Post([FromBody]  List<string> sqlList)
         {
+            if (sqlList != null)
+            {
+                Program.PostSQLCmd(sqlList);
+            }
         }
 
         // PUT api/values/5

@@ -50,6 +50,35 @@ namespace ASP103.Controllers
             return ExecuteSQLCmd(sql);
         }
 
+        public static String PostSQLCmd(List<string> sqlList)
+        {
+            Console.WriteLine("Getting Connection ...");
+            SqlConnection sqlConnection = DBUtils.GetDBConnection();
+            try
+            {
+                sqlConnection.Open();
+                if (sqlList.Count > 0)
+                {
+                    for (int i = 0; i < sqlList.Count; i++)
+                    {
+                        String sql = sqlList[i];
+                        SqlCommand sqlCmd = new SqlCommand(sql, sqlConnection);
+                        sqlCmd.ExecuteNonQuery();
+                        sqlCmd.Dispose();
+                    }
+                }
+                return "1";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+            return "0";
+        }
 
         public static String SelectSQLCmd(String sql, int json)
         {
