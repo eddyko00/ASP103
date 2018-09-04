@@ -79,17 +79,27 @@ namespace ASP103.Controllers
                     return Program.ExecuteSQLCmd(sqlcmd);
                 }
             }
+            else if (id == 55) // List Execute
+            {
+                if (sqlcmd != null)
+                {
+                    List<string> stringList = sqlcmd.Split('~').ToList();                    
+                    return Program.PostSQLCmd(stringList);
+                }
+            }
+
             return "ERROR";
         }
 
         // POST api/values
         [HttpPost]
-        //public void Post([FromBody] string value)
-        public void Post([FromBody]  List<string> sqlList)
+        public void Post([FromBody] string sqlList)
+        //public void Post([FromBody]  List<string> sqlList)
         {
             if (sqlList != null)
             {
-                Program.PostSQLCmd(sqlList);
+                Program.ExecuteSQLCmd(sqlList);
+                //Program.PostSQLCmd(sqlList);
             }
         }
 
