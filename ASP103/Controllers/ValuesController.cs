@@ -16,7 +16,6 @@ namespace ASP103.Controllers
         {
             public String Name;
             public DateTime ExpiryDate;
-            public float Price;
 
         }
         // GET api/values
@@ -27,9 +26,9 @@ namespace ASP103.Controllers
         {
             Product product = new Product();
 
-            product.Name = "Working...";
-            product.ExpiryDate = new DateTime(2008, 12, 28);
-            product.Price = 3.99F;
+            product.Name = "V1.0 Working...";
+            DateTime now = DateTime.Now;
+            product.ExpiryDate = now; 
 
             String objString = JsonConvert.SerializeObject(product);
             Product idObj = JsonConvert.DeserializeObject<Product>(objString);
