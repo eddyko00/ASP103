@@ -26,7 +26,7 @@ namespace ASP103.Controllers
         {
             Product product = new Product();
 
-            product.Name = "V1.0 Working...";
+            product.Name = "V1.1 Working...";
             DateTime now = DateTime.Now;
             product.ExpiryDate = now; 
 
@@ -92,20 +92,23 @@ namespace ASP103.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string sqlList)
-        //public void Post([FromBody]  List<string> sqlList)
+        public void Post([FromBody] string sqlcmd)
         {
-            if (sqlList != null)
-            {
-                Program.ExecuteSQLCmd(sqlList);
-                //Program.PostSQLCmd(sqlList);
-            }
+
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] string sqlcmd)
         {
+            if (id == 55) // List Execute
+            {
+                if (sqlcmd != null)
+                {
+                    List<string> stringList = sqlcmd.Split('~').ToList();
+                    Program.PostSQLCmd(stringList);
+                }
+            }
         }
 
         // DELETE api/values/5
