@@ -92,23 +92,31 @@ namespace ASP103.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string sqlcmd)
+        public String Post([FromBody] string sqlcmd)
         {
-
+            String result = "0";
+            if (sqlcmd != null)
+            {
+                List<string> stringList = sqlcmd.Split('~').ToList();
+                result =Program.PostSQLCmd(stringList);
+            }
+            return result;
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string sqlcmd)
+        public String Put(int id, [FromBody] string sqlcmd)
         {
+            String result = "0";
             if (id == 55) // List Execute
             {
                 if (sqlcmd != null)
                 {
                     List<string> stringList = sqlcmd.Split('~').ToList();
-                    Program.PostSQLCmd(stringList);
+                    result = Program.PostSQLCmd(stringList);
                 }
             }
+            return result;
         }
 
         // DELETE api/values/5
